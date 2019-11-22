@@ -17,7 +17,8 @@ const routes: Routes = [
   },
   { path: 'churches', loadChildren: './churches/churches.module#ChurchesPageModule' },
   { path: 'add-church', loadChildren: './add-church/add-church.module#AddChurchPageModule' },
-  { path: 'manage-churches', loadChildren: './manage-churches/manage-churches.module#ManageChurchesPageModule' }
+  { path: 'manage-churches', loadChildren: './manage-churches/manage-churches.module#ManageChurchesPageModule' },
+  { path: 'languages', loadChildren: './languages/languages.module#LanguagesPageModule' }
 ];
 
 @NgModule({

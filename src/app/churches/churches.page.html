@@ -1,9 +1,31 @@
 <ion-header>
   <ion-toolbar>
+  	<ion-buttons slot="start">
+  		<ion-menu-button></ion-menu-button>
+  	</ion-buttons>
     <ion-title>Churches</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+	<h1 align="center">
+		Subscribe To A Church
+	</h1>
+	<h4 align="center">
+		Select which groups you would like to receive notifications from.
+	</h4>
+	<ion-list>
+		<ion-item>
+			<ion-label>Northern Hills Baptist Church</ion-label>
+			<ion-toggle [(ngModel)]="NHBC"> </ion-toggle>
+		</ion-item>
+		<ion-item>
+			<ion-label>Southern Hills Methodist Church</ion-label>
+			<ion-toggle [(ngModel)]="SHMC"> </ion-toggle>
+		</ion-item>
+		<ion-item>
+			<ion-label>My Bible Study</ion-label>
+			<ion-toggle [(ngModel)]="MBS"> </ion-toggle>
+		</ion-item>
+	</ion-list>
 </ion-content>

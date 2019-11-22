@@ -20,6 +20,26 @@ export class AppComponent {
       title: 'List',
       url: '/list',
       icon: 'list'
+    },
+    {
+      title: 'Churches',
+      url: '/churches',
+      icon: 'home'
+    },
+    {
+      title: 'Add Church',
+      url: '/add-church',
+      icon: 'add'
+    },
+    {
+      title: 'Manage Churches',
+      url: '/manage-churches',
+      icon: 'settings'
+    },
+    {
+      title: 'Languages',
+      url: '/languages',
+      icon: 'globe'
     }
   ];
 
