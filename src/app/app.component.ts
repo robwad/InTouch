@@ -47,6 +47,11 @@ export class AppComponent {
       title: 'Languages',
       url: '/languages',
       icon: 'globe'
+    },
+    {
+      title: 'Log Out',
+      url: '/logout',
+      icon: 'log-out'
     }
   ];
 
