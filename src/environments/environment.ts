@@ -11,8 +11,6 @@ export const environment = {
     projectId: "church-34afa",
     storageBucket: "church-34afa.appspot.com",
     messagingSenderId: "704523972517",
-    appId: "1:704523972517:web:451a6b20fb62c85058824c",
-    measurementId: "G-B5TPKS513H"
   }
 };
 
