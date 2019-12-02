@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Log Out</ion-title>
+  </ion-toolbar>
+</ion-header>
+<br>
+<br>
+<br>
+<br>
+<ion-content>
+	<ion-grid>
+    <ion-row>
+      <ion-col text-center>
+        You are currently signed in as: {{userEmail}}
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col text-center>
+        Would you like to Log Out?
+      </ion-col>
+    </ion-row>
+  </ion-grid> 
+</ion-content>
+
+
+<ion-footer (click)="logout()">
+  <ion-toolbar color="secondary">
+    <ion-title align="center">Log Out</ion-title>
+  </ion-toolbar>
+</ion-footer>

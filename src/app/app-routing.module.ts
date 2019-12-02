@@ -15,9 +15,9 @@ const routes: Routes = [
     path: 'list',
     loadChildren: () => import('./list/list.module').then(m => m.ListPageModule)
   },
-  { path: 'churches', loadChildren: './churches/churches.module#ChurchesPageModule' },
-  { path: 'add-church', loadChildren: './add-church/add-church.module#AddChurchPageModule' },
-  { path: 'manage-churches', loadChildren: './manage-churches/manage-churches.module#ManageChurchesPageModule' },
+  { path: 'groups', loadChildren: './churches/churches.module#ChurchesPageModule' },
+  { path: 'add-group', loadChildren: './add-church/add-church.module#AddChurchPageModule' },
+  { path: 'manage-groups', loadChildren: './manage-churches/manage-churches.module#ManageChurchesPageModule' },
   { path: 'languages', loadChildren: './languages/languages.module#LanguagesPageModule' },
   { path: 'register', loadChildren: './register/register.module#RegisterPageModule' },
   { path: 'login', loadChildren: './login/login.module#LoginPageModule' },

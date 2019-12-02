@@ -3,29 +3,120 @@
   	<ion-buttons slot="start">
   		<ion-menu-button></ion-menu-button>
   	</ion-buttons>
-    <ion-title>Churches</ion-title>
+    <ion-title>Groups</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 	<h1 align="center">
-		Subscribe To A Church
+		Subscribe To A Group
 	</h1>
 	<h4 align="center">
 		Select which groups you would like to receive notifications from.
 	</h4>
-	<ion-list>
+
+	<ion-list *ngFor="let item of groups">
 		<ion-item>
-			<ion-label>Northern Hills Baptist Church</ion-label>
-			<ion-toggle [(ngModel)]="NHBC"> </ion-toggle>
-		</ion-item>
-		<ion-item>
-			<ion-label>Southern Hills Methodist Church</ion-label>
-			<ion-toggle [(ngModel)]="SHMC"> </ion-toggle>
-		</ion-item>
-		<ion-item>
-			<ion-label>My Bible Study</ion-label>
-			<ion-toggle [(ngModel)]="MBS"> </ion-toggle>
+			<ion-label>{{item.Name}}</ion-label>
+			<ion-toggle [(ngModel)]="item.isOn" (ionChange)="UpdateUserSubs(item)"> </ion-toggle>
 		</ion-item>
 	</ion-list>
+
+
+<!-- <ion-card *ngFor="let item of groups">
+      <ion-card-header>
+        <ion-card-title>
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                Edit
+              </ion-col>
+              <ion-col>
+                <ion-button fill="clear" color="medium" size="small" (click)="item.isEdit = false">
+                  Cancel
+                </ion-button>
+              </ion-col>
+              <ion-col>
+                <ion-button fill="outline" color="success" size="small" (click)="UpdateRecord(item)">
+                  Update
+                </ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item>
+          <ion-label><strong>Name</strong></ion-label>
+          <ion-input type="text" [(ngModel)]="item.EditName"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label><strong>Age</strong></ion-label>
+          <ion-input type="text" [(ngModel)]="item.EditAge"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label><strong>Address</strong></ion-label>
+          <ion-input type="text" [(ngModel)]="item.EditAddress"></ion-input>
+        </ion-item>
+      </ion-card-content>
+  </ion-card>
 </ion-content>
+ -->
+<!-- 	<ion-card *ngFor="let item of groups">
+    <span *ngIf="!item.isEdit; else elseBlock">
+      <ion-card-header>
+        <ion-card-title> hello {{item.id}} {{item.Name}} of {{item.Age}} years</ion-card-title>
+        <ion-card-subtitle>From: {{item.Address}}</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+ 
+        <ion-button shape="round" color="secondary" size="small" (click)="EditRecord(item)">
+          <ion-icon size="small" slot="icon-only" name="create"></ion-icon>
+ 
+        </ion-button>
+        <ion-button shape="round" color="danger" size="small" (click)="RemoveRecord(item.id)">
+          <ion-icon size="small" slot="icon-only" name="trash"></ion-icon>
+ 
+        </ion-button>
+      </ion-card-content>
+    </span>
+    <ng-template #elseBlock>
+      <ion-card-header>
+        <ion-card-title>
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                Edit
+              </ion-col>
+              <ion-col>
+                <ion-button fill="clear" color="medium" size="small" (click)="item.isEdit = false">
+                  Cancel
+                </ion-button>
+              </ion-col>
+              <ion-col>
+                <ion-button fill="outline" color="success" size="small" (click)="UpdateRecord(item)">
+                  Update
+                </ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item>
+          <ion-label><strong>Name</strong></ion-label>
+          <ion-input type="text" [(ngModel)]="item.EditName"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label><strong>Age</strong></ion-label>
+          <ion-input type="text" [(ngModel)]="item.EditAge"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label><strong>Address</strong></ion-label>
+          <ion-input type="text" [(ngModel)]="item.EditAddress"></ion-input>
+        </ion-item>
+      </ion-card-content>
+    </ng-template>
+  </ion-card>
+</ion-content>
+ -->

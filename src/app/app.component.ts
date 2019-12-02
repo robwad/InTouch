@@ -29,18 +29,18 @@ export class AppComponent {
       icon: 'person'
     },
     {
-      title: 'Churches',
-      url: '/churches',
+      title: 'Groups',
+      url: '/groups',
       icon: 'home'
     },
     {
-      title: 'Add Church',
-      url: '/add-church',
+      title: 'Add Group',
+      url: '/add-group',
       icon: 'add'
     },
     {
-      title: 'Manage Churches',
-      url: '/manage-churches',
+      title: 'Manage Groups',
+      url: '/manage-groups',
       icon: 'settings'
     },
     {
