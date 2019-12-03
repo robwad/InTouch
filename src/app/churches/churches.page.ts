@@ -10,8 +10,6 @@ import * as firebase from "firebase/app";
 })
 export class ChurchesPage implements OnInit {
 	groups: any;
-	subs: any;
-	userData: any;
 	user: any;
 
 //  user_id = user.id
@@ -39,8 +37,6 @@ export class ChurchesPage implements OnInit {
     		uid_list = {}
     	}
     	console.log("uid", uid)
-      	// if (this.user_id in this.UserIDs):
-      	// //   let toggle = True
         return {
           id: e.payload.doc.id,
           Name: e.payload.doc.data()['name'],
@@ -48,28 +44,10 @@ export class ChurchesPage implements OnInit {
           isOn: uid in uid_list
 
 
-          // Age: e.payload.doc.data()['Age'],
-          // Address: e.payload.doc.data()['Address'],
         };
       })
       console.log("this.groups", this.groups);
     });
-
-
-    // this.userCrud.read_User(this.user).subscribe(data => {
- 
-    //   this.userData = data.map(e => {
-    //     return {
-    //       id: e.payload.doc.id,
-    //       isOn: false,
-    //       Name: e.payload.doc.data()['name'],
-    //       // Age: e.payload.doc.data()['Age'],
-    //       // Address: e.payload.doc.data()['Address'],
-    //     };
-    //   })
-    //   console.log(this.groups);
-    //   console.log(this.user)
-    // });
   }
 
     UpdateUserSubs(group) {
@@ -92,10 +70,7 @@ export class ChurchesPage implements OnInit {
     		delete previous[uid]
     	}
     	record['user_ids'] = previous;
-	    // record['users_subscribed'] = this.user_id;
-	    // record['Owned'] = recordRow.owned;
-	    // record['Subscriptions'] = ["hello"];
-	    // record['Subscriptions'] = recordRow.subscriptions;
+
 	    console.log("group.id", group.id)
 	    this.groupCrud.update_Group(group.id, record);
 	    // group.isOn = false;

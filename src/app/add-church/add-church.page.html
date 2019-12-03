@@ -10,9 +10,11 @@
 <ion-content>
 	<h1 align="center">Name Your New Group</h1>
 	<br>
-	<ion-input align="center" placeholder="Group Name"></ion-input>
+	<ion-item>
+		<ion-input align="center" placeholder="Group Name" [(ngModel)]="New_Name" ></ion-input>
+	</ion-item>
 	<br>
 	<div align="center">
-		<ion-button type="submit" >Submit</ion-button>
+		<ion-button (click)="AddGroup()">Submit</ion-button>
 	</div>
 </ion-content>
