@@ -8,17 +8,16 @@
 </ion-header>
 
 <ion-content>
-	<h1 align="center">Select a Group</h1>
+	<h1 align="center">Select Groups</h1>
+    <h4 align="center">Choose the groups you want to send your notification to.</h4>
+
 	<br>
-	<ion-list >
+		<ion-list *ngFor="let item of display_groups">
 		<ion-item>
-			Southern Hills Baptist Church
-		</ion-item>
-		<ion-item>
-			Northern Hills Methodist Church
-		</ion-item>
-		<ion-item>
-			My Bible Study
+			<ion-label>{{item.Name}}</ion-label>
+			<ion-button shape="round" color="danger" (click)="deleteGroup(item)">
+				<ion-icon slot="icon-only" name="trash"></ion-icon>
+			</ion-button>
 		</ion-item>
 	</ion-list>
 </ion-content>
