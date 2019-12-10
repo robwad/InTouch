@@ -9,58 +9,48 @@ import { AuthService } from '../services/auth.service'
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
+    validations_form: FormGroup;
+    errorMessage: string = '';
+    validation_messages = {
+        'email': [
+            { type: 'required', message: 'Email is required.' },
+            { type: 'pattern', message: 'Please enter a valid email.' }],
+        'password': [
+        { type: 'required', message: 'Password is required.' },
+        { type: 'minlength', message: 'Password must be at least 5 characters long.' }]
+    };
 
-  validations_form: FormGroup;
-  errorMessage: string = '';
+    constructor(
+        private navCtrl: NavController,
+        private authService: AuthService,
+        private formBuilder: FormBuilder) { }
 
-  constructor(
+    ngOnInit() {
+        // run validators on inputs
+        this.validations_form = this.formBuilder.group({
+            email: new FormControl('', Validators.compose([
+                Validators.required,
+                Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
+                ])),
+            password: new FormControl('', Validators.compose([
+                Validators.minLength(6),
+                Validators.required
+                ])),
+        });
+    }
 
-    private navCtrl: NavController,
-    private authService: AuthService,
-    private formBuilder: FormBuilder
+    // set the current user in auth db
+    loginUser(value){
+        this.authService.loginUser(value).then(res => {
+            this.errorMessage = "";
+            this.navCtrl.navigateForward('/groups');
+        }, err => {
+            this.errorMessage = err.message;
+        })
+    }
 
-  ) { }
-
-  ngOnInit() {
-
-    this.validations_form = this.formBuilder.group({
-      email: new FormControl('', Validators.compose([
-        Validators.required,
-        Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
-      ])),
-      password: new FormControl('', Validators.compose([
-        Validators.minLength(6),
-        Validators.required
-      ])),
-    });
-  }
-
-
-  validation_messages = {
-    'email': [
-      { type: 'required', message: 'Email is required.' },
-      { type: 'pattern', message: 'Please enter a valid email.' }
-    ],
-    'password': [
-      { type: 'required', message: 'Password is required.' },
-      { type: 'minlength', message: 'Password must be at least 5 characters long.' }
-    ]
-  };
- 
-
-  loginUser(value){
-    this.authService.loginUser(value)
-    .then(res => {
-      console.log(res);
-      this.errorMessage = "";
-      this.navCtrl.navigateForward('/groups');
-    }, err => {
-      this.errorMessage = err.message;
-    })
-  }
-
-  goToRegisterPage(){
-    this.navCtrl.navigateForward('/register');
-  }
-
+    // redirect to register
+    goToRegisterPage(){
+        this.navCtrl.navigateForward('/register');
+    }
 }
