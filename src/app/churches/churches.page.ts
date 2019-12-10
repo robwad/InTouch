@@ -18,8 +18,8 @@ export class ChurchesPage implements OnInit {
     display_groups: any;
 
     constructor(private groupCrud: GroupCrudService,
-    private userCrud: UserCrudService,
-    private authService: AuthService) { }
+        private userCrud: UserCrudService,
+        private authService: AuthService) { }
 
     ngOnInit() {
         // get current user

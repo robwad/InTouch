@@ -14,16 +14,18 @@ export class ManageChurchesPage implements OnInit {
 	display_groups: any;
 
 	constructor(private groupCrud: GroupCrudService,
-  	private firestore: AngularFirestore) { }
+        private firestore: AngularFirestore) { }
 
   	ngOnInit() {
+        // get current user
   		firebase.auth().onAuthStateChanged( user => {
 	  		if (user) { this.user = user }
 	  	});
 
+        // display the groups owned by current user
 	  	this.groupCrud.read_Group().subscribe(data => { 
 	  		this.groups = data.map(e => {
-	  			let uid = this.user.uid;
+	  		    let uid = this.user.uid;
 	  			let uid_list = e.payload.doc.data()['user_ids']
 	  			if (!uid_list){
 	  				uid_list = {}
@@ -45,6 +47,7 @@ export class ManageChurchesPage implements OnInit {
 		});
 	}
 
+    // remove the group from the groups db
 	deleteGroup(group) {
 	  	this.groupCrud.delete_Group(group.id)
 	}
