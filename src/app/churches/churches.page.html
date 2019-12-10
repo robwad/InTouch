@@ -15,7 +15,7 @@
 		Select which groups you would like to receive notifications from.
 	</h4>
 
-	<ion-list *ngFor="let item of groups">
+	<ion-list *ngFor="let item of display_groups">
 		<ion-item>
 			<ion-label>{{item.Name}}</ion-label>
 			<ion-toggle [(ngModel)]="item.isOn" (ionChange)="UpdateUserSubs(item)"> </ion-toggle>

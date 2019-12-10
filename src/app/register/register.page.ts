@@ -5,6 +5,7 @@ import { FormsModule }   from '@angular/forms';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { NavController } from '@ionic/angular';
 import { UserCrudService } from '../services/usercrud.service'
+import { OrgCrudService } from '../services/orgcrud.service'
 
 @Component({
   selector: 'app-register',
@@ -28,15 +29,19 @@ export class RegisterPage implements OnInit {
  };
 
  email: any;
+ orgs: any;
+ choice: any;
 
   constructor(
   	private navCtrl: NavController,
     private authService: AuthService,
     private formBuilder: FormBuilder,
-    private userCrud: UserCrudService ) { }
+    private userCrud: UserCrudService,
+    private orgCrud: OrgCrudService) { }
 
   ngOnInit() {
-  	this.validations_form = this.formBuilder.group({
+  	this.orgs = [{name: "hello"}]
+  	  this.validations_form = this.formBuilder.group({
       email: new FormControl('', Validators.compose([
         Validators.required,
         Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
@@ -46,6 +51,23 @@ export class RegisterPage implements OnInit {
         Validators.required
       ])),
     });
+
+
+  	this.orgCrud.read_Orgs().subscribe(data => {
+  		this.orgs = data.map(e => {
+
+  			let name = e.payload.doc.data()['name']
+	  			if (!name){
+	  				name = "hello"
+	  			}
+  			return {
+		        id: e.payload.doc.id,
+		        Name: name,
+		    };
+		})
+	    console.log(this.orgs)
+
+	});
   }
 
   tryRegister(value){
@@ -67,10 +89,12 @@ export class RegisterPage implements OnInit {
 
   CreateRecord() {
     let record = {};
-    record['Email'] = this.email;
-    record['Language'] = 'english';
-    record['Owned'] = [];
-    record['Subscriptions'] = [];
+    record['email'] = this.email;
+    record['language'] = 'english';
+    console.log(this.choice)
+    record['org'] = this.choice;
+    // record['Owned'] = [];
+    // record['Subscriptions'] = [];
     this.userCrud.create_NewUser(record).then(resp => {
       // possibly add a this.email = "";
       // this.studentName = "";

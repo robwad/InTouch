@@ -30,6 +30,14 @@
         </div>
       </ng-container>
     </div>
+	<ion-item>
+ <!-- may have to change formControlName -->
+ 		<ion-select placeholder="Organization" [compareWith]="compareWith" type="text" formControlName="email"[(ngModel)]="choice" >
+        	<ion-select-option *ngFor="let org of orgs">
+        		{{org.Name}}
+        	</ion-select-option>
+  	    </ion-select>
+	</ion-item>
  
     <br>
     <div align="center">
@@ -40,4 +48,7 @@
     
   </form>
   <p class="go-to-login">Already have an account? <a (click)="goLoginPage()">Try to Log In.</a></p>
+
+
+  
  </ion-content>

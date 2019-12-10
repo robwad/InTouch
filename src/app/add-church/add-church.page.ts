@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { GroupCrudService } from '../services/groupcrud.service'
 import * as firebase from "firebase/app";
+import { AuthService } from '../services/auth.service'
+import { UserCrudService } from '../services/usercrud.service'
 
 @Component({
   selector: 'app-add-church',
@@ -10,14 +12,16 @@ import * as firebase from "firebase/app";
 export class AddChurchPage implements OnInit {
 	New_Name: any;
 	userID: any;
+	user_org;
 
-  constructor(private groupCrud: GroupCrudService) { }
+  constructor(private groupCrud: GroupCrudService,
+    private userCrud: UserCrudService
+  ) { }
 
   ngOnInit() {
   	firebase.auth().onAuthStateChanged( user => {
   		if (user) { this.userID = user.uid }
   	});
-  	// this.userID = firebase.auth().currentUser.uid;
   }
 
   AddGroup() {
