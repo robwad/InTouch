@@ -1,6 +1,8 @@
 {
   "name": "Church",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular",
   "id": "353ef1a3"
 }
