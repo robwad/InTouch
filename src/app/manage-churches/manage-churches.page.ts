@@ -3,6 +3,13 @@ import { GroupCrudService } from '../services/groupcrud.service'
 import * as firebase from "firebase/app";
 import { AngularFirestore } from '@angular/fire/firestore';
 
+// new
+import * as admin from 'firebase-admin';
+// admin.initializeApp({
+//   credential: admin.credential.applicationDefault(),
+//   databaseURL: "https://church-34afa.firebaseio.com"
+// });
+
 @Component({
   selector: 'app-manage-churches',
   templateUrl: './manage-churches.page.html',
@@ -14,6 +21,9 @@ export class ManageChurchesPage implements OnInit {
 	display_groups: any;
     selection: any;
     message: any;
+    // new
+    registrationToken: any;
+    mes: any;
 
 	constructor(private groupCrud: GroupCrudService,
         private firestore: AngularFirestore) { }
@@ -82,7 +92,35 @@ export class ManageChurchesPage implements OnInit {
                 }
             })
         }
-    }    
+    }
+
+    // new
+    hello() {
+        // This registration token comes from the client FCM SDKs.
+        this.registrationToken = 'cFiwCAD8kTY:APA91bGnDmJe5cXbInsOwY8wUklo0UQ1JuTUwXZg2BQ8ZRORo3sCE';
+        this.mes = { 
+            data: {
+                score: '850',
+                time: '2:45'
+            },
+            token: this.registrationToken
+        };
+
+    //     // Send a message to the device corresponding to the provided
+    //     // registration token.
+    //     admin.messaging().send(this.mes)
+    //     .then((response) => {
+    //         // Response is a message ID string.
+    //         console.log('Successfully sent message:', response);
+    //     })
+    //     .catch((error) => {
+    //         console.log('Error sending message:', error);
+    //     });   
+    }
+    
+
+
+
 
     // remove the group from the groups db
 	deleteGroup(group) {
