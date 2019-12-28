@@ -9,6 +9,9 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 
+// fcm module
+import { FcmService } from './services/fcm.service';
+import { ToastController } from '@ionic/angular';
 
 
 @Component({
@@ -61,7 +64,9 @@ export class AppComponent {
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private db: AngularFirestore,
-    public afAuth: AngularFireAuthModule
+    public afAuth: AngularFireAuthModule,
+    private fcm: FcmService,
+    public toastController: ToastController
 
 
   ) {
@@ -69,10 +74,36 @@ export class AppComponent {
 
   }
 
+  private async presentToast(message) {
+    const toast = await this.toastController.create({
+      message,
+      duration: 3000
+    });
+    toast.present();
+  }
+
+  private notificationSetup() {
+    this.fcm.getToken();
+    this.fcm.onNotifications().subscribe(
+      (msg) => {
+        if (this.platform.is('ios')) {
+          this.presentToast(msg.aps.alert);
+        } else {
+          this.presentToast(msg.body);
+        }
+      });
+  }
+
   initializeApp() {
     this.platform.ready().then(() => {
-      this.statusBar.styleDefault();
-      this.splashScreen.hide();
+      if (this.platform.is('cordova')) {
+          this.statusBar.styleDefault();
+          this.splashScreen.hide();
+          this.notificationSetup();
+        } 
+    //   else {
+    // // fallback to browser APIs
+    //   }
     });
   }
 }

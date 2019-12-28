@@ -18,6 +18,8 @@ import { AuthService } from './services/auth.service';
 import { FormsModule }   from '@angular/forms';
 
 import { ReactiveFormsModule } from '@angular/forms';
+// firebasex plugin
+import { FirebaseX } from "@ionic-native/firebase-x/ngx";
 
 
 @NgModule({
@@ -38,6 +40,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     AuthService,
     StatusBar,
     SplashScreen,
+    FirebaseX,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
