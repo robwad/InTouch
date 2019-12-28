@@ -1,4 +1,6 @@
 import * as firebase from "firebase/app";
+// for sending notifications
+import * as admin from 'firebase-admin';
 
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
