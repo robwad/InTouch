@@ -4,7 +4,8 @@ import * as firebase from "firebase/app";
 import { AngularFirestore } from '@angular/fire/firestore';
 
 // new
-import * as admin from 'firebase-admin';
+import { HttpClient } from "@angular/common/http";
+// import * as admin from 'firebase-admin';
 // admin.initializeApp({
 //   credential: admin.credential.applicationDefault(),
 //   databaseURL: "https://church-34afa.firebaseio.com"
@@ -24,9 +25,11 @@ export class ManageChurchesPage implements OnInit {
     // new
     registrationToken: any;
     mes: any;
+    postdata: any;
 
 	constructor(private groupCrud: GroupCrudService,
-        private firestore: AngularFirestore) { }
+        private firestore: AngularFirestore,
+        private http: HttpClient) { }
 
   	ngOnInit() {
         // get current user
@@ -95,27 +98,22 @@ export class ManageChurchesPage implements OnInit {
     }
 
     // new
-    hello() {
-        // This registration token comes from the client FCM SDKs.
-        this.registrationToken = 'cFiwCAD8kTY:APA91bGnDmJe5cXbInsOwY8wUklo0UQ1JuTUwXZg2BQ8ZRORo3sCE';
-        this.mes = { 
-            data: {
-                score: '850',
-                time: '2:45'
-            },
-            token: this.registrationToken
-        };
 
-    //     // Send a message to the device corresponding to the provided
-    //     // registration token.
-    //     admin.messaging().send(this.mes)
-    //     .then((response) => {
-    //         // Response is a message ID string.
-    //         console.log('Successfully sent message:', response);
-    //     })
-    //     .catch((error) => {
-    //         console.log('Error sending message:', error);
-    //     });   
+
+    // new
+    hello() {
+
+        this.postdata = {
+                "name": "Customer004",
+                "email": "customer004@email.com",
+                "tel": "0000252525"
+        }        
+        this.http.get(
+        'https://us-central1-church-34afa.cloudfunctions.net/helloWorld')
+      .subscribe((data: any) => {
+        console.log(data);
+        // this.firebaseReply = data.text;
+      });
     }
     
 

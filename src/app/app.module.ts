@@ -22,7 +22,8 @@ import { FormsModule }   from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 // firebasex plugin
 import { FirebaseX } from "@ionic-native/firebase-x/ngx";
-
+// new
+import { HttpClientModule, HttpClient } from "@angular/common/http"
 
 @NgModule({
   declarations: [AppComponent],
@@ -36,13 +37,17 @@ import { FirebaseX } from "@ionic-native/firebase-x/ngx";
     AngularFireAuthModule,
     AngularFireStorageModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    // new
+    HttpClientModule
   ],
   providers: [
     AuthService,
     StatusBar,
     SplashScreen,
     FirebaseX,
+    // new
+    HttpClient,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
