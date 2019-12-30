@@ -36,17 +36,17 @@ var message = {
 
 // Send a message to the device corresponding to the provided
 // registration token.
+    response.setHeader('Access-Control-Allow-Origin', '*');
+
 admin.messaging().send(message)
   .then((resp) => {
     // Response is a message ID string.
     // console.log('Successfully sent message:', resp);
-    resp.setHeader('Access-Control-Allow-Origin', '*');
-    resp.send({text:"Successfully sent message"});
+    response.send({text:"Successfully sent message"});
   })
   .catch((error) => {
     // console.log('Error sending message:', error);
-    resp.setHeader('Access-Control-Allow-Origin', '*');
-    resp.send({text:"Error sending message"});
+    response.send({text:"Error sending message"});
   });
 
 });
