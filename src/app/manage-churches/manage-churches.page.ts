@@ -26,6 +26,7 @@ export class ManageChurchesPage implements OnInit {
     registrationToken: any;
     mes: any;
     postdata: any;
+    sender_org: any;
 
 	constructor(private groupCrud: GroupCrudService,
         private firestore: AngularFirestore,
@@ -54,7 +55,8 @@ export class ManageChurchesPage implements OnInit {
 			        Name: e.payload.doc.data()['name'],
 			        Owner: e.payload.doc.data()['owner'],
 			        Subs: uid_list,
-			        Org: "dummyOrg",
+                    // new
+			        Org: e.payload.doc.data()['org'],
                     isOn: false
 			    };
 			})
@@ -70,6 +72,7 @@ export class ManageChurchesPage implements OnInit {
 
     // update selection, a set of the selected groups
     UpdateSelection(group) {
+        this.sender_org = group.Org
         if (group.isOn) {
             // insert current_uid in previous userIDS
             this.selection[group.Name] = "dummy"
@@ -97,14 +100,12 @@ export class ManageChurchesPage implements OnInit {
         }
     }
 
-    // new
-
 
     // new
     hello() {
         let postdata = {
                 "notification_body": this.message,
-                "sender": "dummy_sender",
+                "notification_title": this.sender_org,
                 "regToken": "0000252525"
         }        
         this.http.post(

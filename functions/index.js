@@ -27,7 +27,7 @@ exports.helloWorld = functions.https.onRequest((request, response) => {
 
 var message = {
 	notification: {
-		title: request.body.sender,
+		title: request.body.notification_title,
 		body: request.body.notification_body
 	},
 	token: registrationToken
