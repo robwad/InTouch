@@ -14,22 +14,21 @@ admin.initializeApp({
 //  response.send("Hello from Firebase!");
 // });
 
+// exports.helloWorld = functions.https.onRequest((request, response) => {
+//     cors(request, response, () => {
+//         response.setHeader('Access-Control-Allow-Origin', '*');
+//         response.send({text:"Hello from Firebase!"});
+//     });
+// });
+
 exports.helloWorld = functions.https.onRequest((request, response) => {
     cors(request, response, () => {
-        response.setHeader('Access-Control-Allow-Origin', '*');
-        response.send({text:"Hello from Firebase!"});
-    });
-});
-
-exports.helloWorld = functions.https.onRequest((request, response) => {
- // response.send("Hello from Firebase!");
-
- var registrationToken = 'cFiwCAD8kTY:APA91bGnDmJe5cXbInsOwY8wUklo0UQ1JuTUwXZg2BQ8ZRORo3sCE-SNeyOSxsrvqj-7QU4YIM5rmNYB8hHC9hXVpBD9A--jE_vylstnjQjWWEuXTnU6Uj080FfJpm08NNnUGrjQL9BV';
+        var registrationToken = 'cFiwCAD8kTY:APA91bGnDmJe5cXbInsOwY8wUklo0UQ1JuTUwXZg2BQ8ZRORo3sCE-SNeyOSxsrvqj-7QU4YIM5rmNYB8hHC9hXVpBD9A--jE_vylstnjQjWWEuXTnU6Uj080FfJpm08NNnUGrjQL9BV';
 
 var message = {
 	notification: {
-		title: '$GOOG up 2.43% on the day',
-		body: '$GOOG gained 11.80 points to close at 835.67, up 2.43% on the day.'
+		title: request.body.sender,
+		body: request.body.notification_body
 	},
 	token: registrationToken
 };
@@ -48,9 +47,6 @@ admin.messaging().send(message)
     // console.log('Error sending message:', error);
     response.send({text:"Error sending message"});
   });
-
+	
+    });
 });
-
-// exports.sendNotification = (regToken) => {
-  
-// };

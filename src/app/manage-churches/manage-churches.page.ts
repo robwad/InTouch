@@ -102,14 +102,13 @@ export class ManageChurchesPage implements OnInit {
 
     // new
     hello() {
-
-        this.postdata = {
-                "name": "Customer004",
-                "email": "customer004@email.com",
-                "tel": "0000252525"
+        let postdata = {
+                "notification_body": this.message,
+                "sender": "dummy_sender",
+                "regToken": "0000252525"
         }        
-        this.http.get(
-        'https://us-central1-church-34afa.cloudfunctions.net/helloWorld')
+        this.http.post(
+        'https://us-central1-church-34afa.cloudfunctions.net/helloWorld', postdata)
       .subscribe((data: any) => {
         console.log(data);
         // this.firebaseReply = data.text;
