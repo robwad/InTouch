@@ -3,11 +3,15 @@ import { Injectable } from '@angular/core';
 import { FirebaseX } from "@ionic-native/firebase-x/ngx";
 import { Platform } from '@ionic/angular';
 import { AngularFirestore } from '@angular/fire/firestore';
+// new
+import * as firebase from 'firebase/app';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FcmService {
+
+    uid: any;
 
   constructor(
       private firebase: FirebaseX,
@@ -32,15 +36,23 @@ export class FcmService {
 
   private saveToken(token) {
     if (!token) return;
+    
+    firebase.auth().onAuthStateChanged( user => {
+        if (user){ 
+            this.uid = user.uid
+        }
+        console.log("this is the uid", this.uid)
 
-    const devicesRef = this.afs.collection('devices');
+        const devicesRef = this.afs.collection('devices');
 
-    const data = {
-      token,
-      userId: 'testUserId'
-    };
+        const data = {
+          token,
+          userId: this.uid
+        };
 
-    return devicesRef.doc(token).set(data);
+        return devicesRef.doc(this.uid).set(data);
+    });
+
   }
 
   onNotifications() {

@@ -43,6 +43,7 @@ export class ChurchesPage implements OnInit {
                 }
             }
         });
+        console.log("users read")
         // display the groups in the current user's organization
         this.groupCrud.read_Group().subscribe(data => {
             this.groups = data.map(e => {

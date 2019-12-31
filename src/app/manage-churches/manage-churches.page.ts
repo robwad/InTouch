@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { GroupCrudService } from '../services/groupcrud.service'
 import * as firebase from "firebase/app";
 import { AngularFirestore } from '@angular/fire/firestore';
-
 // new
+import { DeviceCrudService } from '../services/devicecrud.service'
 import { HttpClient } from "@angular/common/http";
 // import * as admin from 'firebase-admin';
 // admin.initializeApp({
@@ -28,7 +28,8 @@ export class ManageChurchesPage implements OnInit {
     postdata: any;
     sender_org: any;
 
-	constructor(private groupCrud: GroupCrudService,
+	constructor(private deviceCrud: DeviceCrudService,
+        private groupCrud: GroupCrudService,
         private firestore: AngularFirestore,
         private http: HttpClient) { }
 
@@ -84,8 +85,8 @@ export class ManageChurchesPage implements OnInit {
         console.log("this.selection", this.selection)
     }
 
-    // get the subs from each selected group, and the message from the textbox
     buildAddressList(){
+        // get the subs from each selected group, and the message from the textbox
         console.log("trig")
         if (this.selection){
             console.log("trig2")
@@ -98,11 +99,13 @@ export class ManageChurchesPage implements OnInit {
                 }
             })
         }
-    }
+
+        // form the list of regTokens
+        // this.deviceCrud.read_Devices().subscribe(data => {
+
+        // });
 
 
-    // new
-    hello() {
         let postdata = {
                 "notification_body": this.message,
                 "notification_title": this.sender_org,
@@ -115,6 +118,8 @@ export class ManageChurchesPage implements OnInit {
         // this.firebaseReply = data.text;
       });
     }
+
+
     
 
 
