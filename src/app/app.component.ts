@@ -86,6 +86,7 @@ export class AppComponent {
     this.fcm.getToken();
     this.fcm.onNotifications().subscribe(
       (msg) => {
+        console.log("notification received")
         if (this.platform.is('ios')) {
           this.presentToast(msg.aps.alert);
         } else {

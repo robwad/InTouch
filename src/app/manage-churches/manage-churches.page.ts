@@ -27,6 +27,7 @@ export class ManageChurchesPage implements OnInit {
     mes: any;
     postdata: any;
     sender_org: any;
+    all_subs: any;
 
 	constructor(private deviceCrud: DeviceCrudService,
         private groupCrud: GroupCrudService,
@@ -87,6 +88,7 @@ export class ManageChurchesPage implements OnInit {
 
     buildAddressList(){
         // get the subs from each selected group, and the message from the textbox
+        this.all_subs = new Set()
         console.log("trig")
         if (this.selection){
             console.log("trig2")
@@ -94,16 +96,34 @@ export class ManageChurchesPage implements OnInit {
                 for (let group of this.display_groups){
                     if (name == group.Name){
                         console.log("groupName, groupSubs", name, group.Subs)
-                        console.log("message", this.message)
+                        Object.keys(group.Subs).forEach(uid => {
+                            this.all_subs.add(uid);
+                        })
                     }
                 }
             })
+            console.log("all_subs", this.all_subs)
         }
 
         // form the list of regTokens
-        // this.deviceCrud.read_Devices().subscribe(data => {
-
-        // });
+        this.deviceCrud.read_Devices().subscribe(data => {
+             this.groups = data.map(e => {
+                let uid = this.user.uid;
+                let uid_list = e.payload.doc.data()['user_ids']
+                if (!uid_list){
+                    uid_list = {}
+                }
+                return {
+                  id: e.payload.doc.id,
+                  Name: e.payload.doc.data()['name'],
+                  Owner: e.payload.doc.data()['owner'],
+                  Subs: uid_list,
+                  // new
+                  Org: e.payload.doc.data()['org'],
+                  isOn: false
+                };
+            })            
+        });
 
 
         let postdata = {
