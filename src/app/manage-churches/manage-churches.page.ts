@@ -28,6 +28,7 @@ export class ManageChurchesPage implements OnInit {
     postdata: any;
     sender_org: any;
     all_subs: any;
+    regTokenlist: any;
 
 	constructor(private deviceCrud: DeviceCrudService,
         private groupCrud: GroupCrudService,
@@ -89,9 +90,7 @@ export class ManageChurchesPage implements OnInit {
     buildAddressList(){
         // get the subs from each selected group, and the message from the textbox
         this.all_subs = new Set()
-        console.log("trig")
         if (this.selection){
-            console.log("trig2")
             Object.keys(this.selection).forEach(name => {
                 for (let group of this.display_groups){
                     if (name == group.Name){
@@ -108,28 +107,26 @@ export class ManageChurchesPage implements OnInit {
         // form the list of regTokens
         this.deviceCrud.read_Devices().subscribe(data => {
              this.groups = data.map(e => {
-                let uid = this.user.uid;
-                let uid_list = e.payload.doc.data()['user_ids']
-                if (!uid_list){
-                    uid_list = {}
+                this.regTokenlist = []
+                let userID = e.payload.doc.data()['userID']
+                let tok = e.payload.doc.data()['token']
+                console.log("userID", userID)
+                console.log("hello all_subs", this.all_subs)
+                console.log("what", this.all_subs.has("k2DRkiUcmZd5XcjyZRZ3kpin2aM2"))
+                if (this.all_subs.has(userID)) {
+                    console.log("triggee")
+                    this.regTokenlist.push(tok)
                 }
-                return {
-                  id: e.payload.doc.id,
-                  Name: e.payload.doc.data()['name'],
-                  Owner: e.payload.doc.data()['owner'],
-                  Subs: uid_list,
-                  // new
-                  Org: e.payload.doc.data()['org'],
-                  isOn: false
-                };
-            })            
+                return {};
+            })
+            console.log("regTokenlist", this.regTokenlist)           
         });
 
 
         let postdata = {
                 "notification_body": this.message,
                 "notification_title": this.sender_org,
-                "regToken": "0000252525"
+                "regTokenlist": this.regTokenlist
         }        
         this.http.post(
         'https://us-central1-church-34afa.cloudfunctions.net/helloWorld', postdata)

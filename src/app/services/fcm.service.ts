@@ -47,7 +47,7 @@ export class FcmService {
 
         const data = {
           token,
-          userId: this.uid
+          userID: this.uid
         };
 
         return devicesRef.doc(this.uid).set(data);
