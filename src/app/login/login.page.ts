@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { NavController } from '@ionic/angular';
 import { AuthService } from '../services/auth.service'
+import * as firebase from "firebase/app";
 
 @Component({
   selector: 'app-login',
@@ -26,6 +27,11 @@ export class LoginPage implements OnInit {
         private formBuilder: FormBuilder) { }
 
     ngOnInit() {
+        firebase.auth().onAuthStateChanged( user => {
+            if (user) { 
+                this.navCtrl.navigateForward('/groups');
+            }
+          });
         // run validators on inputs
         this.validations_form = this.formBuilder.group({
             email: new FormControl('', Validators.compose([

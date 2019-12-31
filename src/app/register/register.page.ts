@@ -6,6 +6,7 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 import { NavController } from '@ionic/angular';
 import { UserCrudService } from '../services/usercrud.service'
 import { OrgCrudService } from '../services/orgcrud.service'
+import * as firebase from "firebase/app";
 
 @Component({
   selector: 'app-register',
@@ -36,6 +37,11 @@ export class RegisterPage implements OnInit {
         private orgCrud: OrgCrudService) { }
 
 	ngOnInit() {
+        firebase.auth().onAuthStateChanged( user => {
+            if (user) { 
+                this.navCtrl.navigateForward('/groups');
+            }
+          });        
         // run validators on inputs
   		this.validations_form = this.formBuilder.group({
   			email: new FormControl('', Validators.compose([
