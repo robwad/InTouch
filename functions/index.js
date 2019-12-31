@@ -23,21 +23,21 @@ admin.initializeApp({
 
 exports.helloWorld = functions.https.onRequest((request, response) => {
     cors(request, response, () => {
-        var registrationToken = 'cFiwCAD8kTY:APA91bGnDmJe5cXbInsOwY8wUklo0UQ1JuTUwXZg2BQ8ZRORo3sCE-SNeyOSxsrvqj-7QU4YIM5rmNYB8hHC9hXVpBD9A--jE_vylstnjQjWWEuXTnU6Uj080FfJpm08NNnUGrjQL9BV';
+        var registrationTokens = request.body.regTokenlist;
 
 var message = {
 	notification: {
 		title: request.body.notification_title,
 		body: request.body.notification_body
 	},
-	token: registrationToken
+	tokens: registrationTokens
 };
 
 // Send a message to the device corresponding to the provided
 // registration token.
     response.setHeader('Access-Control-Allow-Origin', '*');
 
-admin.messaging().send(message)
+admin.messaging().sendMulticast(message)
   .then((resp) => {
     // Response is a message ID string.
     // console.log('Successfully sent message:', resp);
