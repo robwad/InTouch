@@ -21,7 +21,7 @@ export class AddChurchPage implements OnInit {
 
     ngOnInit() {
         // get current user
-  	    firebase.auth().onAuthStateChanged( user => {
+  	    firebase.auth().onAuthStateChanged(user => {
   		    if (user) { 
                 this.userID = user.uid
                 this.user = user
@@ -52,7 +52,8 @@ export class AddChurchPage implements OnInit {
         let record = {
             name: this.New_Name,
   		    owner: this.userID,
-            org: this.user_org
+            org: this.user_org,
+            user_ids: {}
         }
         this.groupCrud.create_NewGroup(record)
     }
