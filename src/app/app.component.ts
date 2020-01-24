@@ -12,6 +12,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 // fcm module
 import { FcmService } from './services/fcm.service';
 import { ToastController } from '@ionic/angular';
+import { TranslationService } from './services/translate.service'
 
 
 @Component({
@@ -66,12 +67,12 @@ export class AppComponent {
     private db: AngularFirestore,
     public afAuth: AngularFireAuthModule,
     private fcm: FcmService,
-    public toastController: ToastController
-
+    public toastController: ToastController,
+    private translateService: TranslationService
 
   ) {
     this.initializeApp();
-
+    let throwaway = this.translateService.getDefaultLanguage();
   }
 
   private async presentToast(message) {

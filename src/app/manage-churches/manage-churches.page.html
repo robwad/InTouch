@@ -3,13 +3,13 @@
   	<ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>Manage Groups</ion-title>
+    <ion-title>{{ "MANAGEGROUPS.header" | translate }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-	<h1 align="center">Select Groups</h1>
-    <h4 align="center">Choose the groups you want to send your notification to.</h4>
+	<h1 align="center">{{ "MANAGEGROUPS.title" | translate }}</h1>
+    <h4 align="center">{{ "MANAGEGROUPS.subtitle" | translate }}</h4>
 
 	<br>
 		<ion-list *ngFor="let item of display_groups">
@@ -23,10 +23,10 @@
 	</ion-list>
 
 	<ion-item>
-		<ion-label align="center" position="floating">What message do you want to send?</ion-label>
+		<ion-label align="center" position="floating">{{ "MANAGEGROUPS.text" | translate }}</ion-label>
 		<ion-textarea [(ngModel)]="message"></ion-textarea>
 	</ion-item>
     <div align="center">
-        <ion-button  (click)="buildAddressList()" class="submit-btn" type="submit">Send Notification</ion-button>
+        <ion-button  (click)="buildAddressList()" class="submit-btn" type="submit">{{ "MANAGEGROUPS.button" | translate }}</ion-button>
     </div>
 </ion-content>

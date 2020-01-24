@@ -1,0 +1,44 @@
+
+{
+    "GROUPS": {
+        "title": "Suscríbase A Un Grupo",
+        "text": "Seleccione de qué grupos desea recibir notificaciones.",
+        "header": "Grupos"
+    },
+    
+    "ADDGROUP": {
+        "title": "Nombra Tu Nuevo Grupo",
+        "placeholder": "Nombre Del Grupo",
+        "button": "Enviar",
+        "header": "Añadir Grupo"
+    },
+    
+    "MANAGEGROUPS": {
+        "title": "Seleccionar Grupos",
+        "subtitle": "Elige A Tus Destinatarios",
+        "text": "¿Qué mensaje quieres enviar?",
+        "button": "Enviar Notificación",
+        "header": "Gestionar Grupos"
+    },
+    
+    "LANGUAGES": {
+        "title": "Elige Tu Idioma",
+        "header": "Idiomas"
+    },
+    
+    "LOGOUT": {
+        "text": "Actualmente estás conectado como:",
+        "logtext": "¿Te gustaría cerrar sesión?",
+        "button": "Cerrar Sesión",
+        "header": "Cerrar Sesión"
+    },
+    
+    "MENU" : {
+        "Groups": "grupos",
+        "Manage Groups": "gestionar grupos",
+        "Add Group": "añadir grupo",
+        "Languages": "idiomas",
+        "Log Out": "cerrar sesión",
+        "header": "Menú"
+    }
+}

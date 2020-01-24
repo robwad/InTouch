@@ -19,7 +19,7 @@ export class LogoutPage implements OnInit {
             this.userEmail = this.authService.userDetails().email; 
         }
         else {
-            this.navCtrl.navigateBack('/home');
+            this.navCtrl.navigateBack('/');
         }
     }
 

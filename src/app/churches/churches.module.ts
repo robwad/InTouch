@@ -8,6 +8,8 @@ import { IonicModule } from '@ionic/angular';
 import { ChurchesPage } from './churches.page';
 import { AuthService } from '../services/auth.service';
 
+import {TranslateModule} from '@ngx-translate/core';
+
 const routes: Routes = [
   {
     path: '',
@@ -20,6 +22,7 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
+    TranslateModule,
     RouterModule.forChild(routes)
   ],
   declarations: [ChurchesPage]

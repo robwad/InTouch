@@ -19,10 +19,11 @@ export class ChurchesPage implements OnInit {
 
     constructor(private groupCrud: GroupCrudService,
         private userCrud: UserCrudService,
-        private authService: AuthService) { }
+        private authService: AuthService
+        ) { }
 
     ngOnInit() {
-        // get current user
+
         firebase.auth().onAuthStateChanged( user => {
             if (user) { this.user = user }
         });

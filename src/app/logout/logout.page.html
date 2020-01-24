@@ -3,7 +3,7 @@
   	<ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>Log Out</ion-title>
+    <ion-title>{{"LOGOUT.header" | translate }}</ion-title>
   </ion-toolbar>
 </ion-header>
 <br>
@@ -13,13 +13,13 @@
 <ion-content>
 	<ion-grid>
     <ion-row>
-      <ion-col text-center>
-        You are currently signed in as: {{userEmail}}
+      <ion-col class="ion-text-center">
+        {{"LOGOUT.text" | translate }} {{userEmail}}
       </ion-col>
     </ion-row>
     <ion-row>
-      <ion-col text-center>
-        Would you like to Log Out?
+      <ion-col class="ion-text-center">
+        {{"LOGOUT.logtext" | translate }}
       </ion-col>
     </ion-row>
   </ion-grid> 
@@ -28,6 +28,6 @@
 
 <ion-footer (click)="logout()">
   <ion-toolbar color="secondary">
-    <ion-title align="center">Log Out</ion-title>
+    <ion-title align="center">{{"LOGOUT.button" | translate }}</ion-title>
   </ion-toolbar>
 </ion-footer>

@@ -1,0 +1,45 @@
+{
+    "GROUPS": {
+        "title": "Subscribe To A Group",
+        "text": "Select which groups you would like to receive notifications from.",
+        "header": "Groups"
+    },
+    
+    "ADDGROUP": {
+        "title": "Name Your New Group",
+        "placeholder": "Group Name",
+        "button": "Submit",
+        "header": "Add Group"
+    },
+    
+    "MANAGEGROUPS": {
+        "title": "Select Groups",
+        "subtitle": "Choose Your Recipients",
+        "text": "What message do you want to send?",
+        "button": "Send Notification",
+        "header": "Manage Groups"
+    },
+    
+    "LANGUAGES": {
+        "title": "Choose Your Language",
+        "header": "Languages"
+    },
+    
+    "LOGOUT": {
+        "text": "You are currently signed in as:",
+        "logtext": "Would you like to log out?",
+        "button": "Log Out",
+        "header": "Log Out"
+    },
+    
+    "MENU" : {
+        "Groups": "groups",
+        "Manage Groups": "manage groups",
+        "Add Group": "add group",
+        "Languages": "languages",
+        "Log Out": "log out",
+        "header": "Menu"
+    }
+}
+
+
