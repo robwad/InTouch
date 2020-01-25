@@ -3,17 +3,48 @@
     <ion-menu contentId="main-content" type="overlay">
       <ion-header>
         <ion-toolbar>
-          <ion-title>Menu</ion-title>
+          <ion-title>{{ "MENU.header" | translate }}</ion-title>
         </ion-toolbar>
       </ion-header>
       <ion-content>
         <ion-list>
-          <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
+<!--           <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
             <ion-item [routerDirection]="'root'" [routerLink]="[p.url]">
               <ion-icon slot="start" [name]="p.icon"></ion-icon>
               <ion-label>
-<!--                 { "MENU.header | translate "} -->
-                {{p.title}}
+                <div>{{p.title}}</div>
+              </ion-label>
+            </ion-item>
+          </ion-menu-toggle> -->
+          <ion-menu-toggle auto-hide="false">
+            <ion-item [routerDirection]="'root'" [routerLink]="'/groups'">
+              <ion-icon slot="start" [name]="'home'"></ion-icon>
+              <ion-label>
+                {{ "MENU.Groups" | translate }}
+              </ion-label>
+            </ion-item>
+            <ion-item [routerDirection]="'root'" [routerLink]="'/add-group'">
+              <ion-icon slot="start" [name]="'add'"></ion-icon>
+              <ion-label>
+                {{ "MENU.AddGroup" | translate }}
+              </ion-label>
+            </ion-item>
+            <ion-item [routerDirection]="'root'" [routerLink]="'/manage-groups'">
+              <ion-icon slot="start" [name]="'settings'"></ion-icon>
+              <ion-label>
+                {{ "MENU.ManageGroups" | translate }}
+              </ion-label>
+            </ion-item>
+            <ion-item [routerDirection]="'root'" [routerLink]="'/languages'">
+              <ion-icon slot="start" [name]="'globe'"></ion-icon>
+              <ion-label>
+                {{ "MENU.Languages" | translate }}
+              </ion-label>
+            </ion-item>
+            <ion-item [routerDirection]="'root'" [routerLink]="'/logout'">
+              <ion-icon slot="start" [name]="'log-out'"></ion-icon>
+              <ion-label>
+                {{ "MENU.LogOut" | translate }}
               </ion-label>
             </ion-item>
           </ion-menu-toggle>

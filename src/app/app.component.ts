@@ -59,6 +59,7 @@ export class AppComponent {
     }
   ];
 
+  cur_title: any;
 
   constructor(
     private platform: Platform,
@@ -71,6 +72,7 @@ export class AppComponent {
     private translateService: TranslationService
 
   ) {
+    console.log("title", this.cur_title)
     this.initializeApp();
     let throwaway = this.translateService.getDefaultLanguage();
   }

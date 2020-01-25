@@ -33,11 +33,11 @@
     },
     
     "MENU" : {
-        "Groups": "groups",
-        "Manage Groups": "manage groups",
-        "Add Group": "add group",
-        "Languages": "languages",
-        "Log Out": "log out",
+        "Groups": "Groups",
+        "ManageGroups": "Manage Groups",
+        "AddGroup": "Add Group",
+        "Languages": "Languages",
+        "LogOut": "Log Out",
         "header": "Menu"
     }
 }

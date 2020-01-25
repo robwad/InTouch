@@ -34,11 +34,11 @@
     },
     
     "MENU" : {
-        "Groups": "grupos",
-        "Manage Groups": "gestionar grupos",
-        "Add Group": "añadir grupo",
-        "Languages": "idiomas",
-        "Log Out": "cerrar sesión",
+        "Groups": "Grupos",
+        "ManageGroups": "Gestionar Grupos",
+        "AddGroup": "Añadir Grupo",
+        "Languages": "Idiomas",
+        "LogOut": "Cerrar Sesión",
         "header": "Menú"
     }
 }
