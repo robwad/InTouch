@@ -13,6 +13,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { FcmService } from './services/fcm.service';
 import { ToastController } from '@ionic/angular';
 import { TranslationService } from './services/translate.service'
+import * as firebase from "firebase/app";
 
 
 @Component({
@@ -59,8 +60,9 @@ export class AppComponent {
     }
   ];
 
-  cur_title: any;
-
+  userID: any;
+  lang: any;
+  stored_lang: any;
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
@@ -69,12 +71,11 @@ export class AppComponent {
     public afAuth: AngularFireAuthModule,
     private fcm: FcmService,
     public toastController: ToastController,
-    private translateService: TranslationService
-
+    private translateService: TranslationService,
+    private firestore: AngularFirestore
   ) {
-    console.log("title", this.cur_title)
     this.initializeApp();
-    let throwaway = this.translateService.getDefaultLanguage();
+    // let throwaway = this.translateService.getDefaultLanguage();    
   }
 
   private async presentToast(message) {
@@ -98,13 +99,40 @@ export class AppComponent {
       });
   }
 
+  private setLanguage(){
+    firebase.auth().onAuthStateChanged( user => {
+        if (user){ 
+            this.userID = user.uid
+        }
+        console.log("this is the uid", this.userID)
+
+        this.firestore.collection('devices').snapshotChanges().subscribe(data => {
+          this.lang = data.map(dev => {
+            return {
+              lan: dev.payload.doc.data()['language'],
+              id: dev.payload.doc.id
+            } 
+          })
+          for (let i of this.lang) {
+            if (i.id == this.userID) {
+              this.stored_lang = i.lan
+            }
+          }
+          let throway1 = this.translateService.setLanguage(this.stored_lang);    
+        })
+    });
+
+    let throwaway = this.translateService.getDefaultLanguage();  
+  }
+
   initializeApp() {
     this.platform.ready().then(() => {
       if (this.platform.is('cordova')) {
           this.statusBar.styleDefault();
           this.splashScreen.hide();
           this.notificationSetup();
-        } 
+      } 
+      this.setLanguage()
     //   else {
     // // fallback to browser APIs
     //   }
